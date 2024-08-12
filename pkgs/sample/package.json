@@ -1,0 +1,21 @@
+{
+  "name": "sample",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "sample": "ts-node ./src/index.ts"
+  },
+  "dependencies": {
+    "@hatsprotocol/sdk-v1-core": "^0.10.0",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.2",
+    "viem": "^2.19.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}
