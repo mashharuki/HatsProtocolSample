@@ -5,10 +5,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "sample": "ts-node ./src/index.ts"
+    "sample": "ts-node ./src/index.ts",
+    "mintHat": "ts-node ./src/mintHat.ts",
+    "subgraph": "ts-node ./src/subgraph.ts"
   },
   "dependencies": {
     "@hatsprotocol/sdk-v1-core": "^0.10.0",
+    "@hatsprotocol/sdk-v1-subgraph": "^1.0.0",
     "dotenv": "^16.4.5",
     "ethers": "^6.13.2",
     "viem": "^2.19.3"

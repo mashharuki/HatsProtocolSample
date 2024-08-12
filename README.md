@@ -24,3 +24,15 @@ HatsProtocol を調査・学習するためのサンプルリポジトリです�
   ```bash
   yarn sample sample
   ```
+
+- Subgraph 用の SDK のサンプルスクリプトの実行
+
+  ```bash
+  yarn sample subgraph
+  ```
+
+- Hat をミントするスクリプトの実行
+
+  ```bash
+  yarn sample mintHat
+  ```
