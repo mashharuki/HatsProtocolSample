@@ -45,7 +45,8 @@ async function main() {
     console.log(`Wallet's Balance: ${formatEther(balance)} ETH`);
 
     // hat ID
-    const hatId = 442;
+    // const hatId = 442;
+    const hatId = 12078056106883486628010822758984794541789440701298176471534417391648768;
     console.log("getting hat info");
     // hatの情報を取得する。
     const hatInfo = await hatsClient.viewHat(BigInt(hatId));
