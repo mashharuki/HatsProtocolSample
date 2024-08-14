@@ -45,7 +45,7 @@ HatsProtocol を調査・学習するためのサンプルリポジトリです�
   }
   ```
 
-  [mintTopHat](https://sepolia.etherscan.io/tx/0xadcb165c2a65f6a0b348a0387c4cc5426cf59607585ce32e486454efaf5b977a)
+  [mintTopHat Transaction](https://sepolia.etherscan.io/tx/0xadcb165c2a65f6a0b348a0387c4cc5426cf59607585ce32e486454efaf5b977a)
 
 - createHat
 
