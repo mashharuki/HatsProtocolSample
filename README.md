@@ -89,3 +89,32 @@ HatsProtocol を調査・学習するためのサンプルリポジトリです�
     transactionHash: '0x734483b0ebba7e8ad3a75c263a1e0742e61215fb33afae2feb06356fce30987c'
   }
   ```
+
+- HatsModules コントラクトのセットアップ
+
+  ```bash
+  yarn sample-hats-module setUp
+  ```
+
+- HatsModules コントラクトのフォーマットチェック
+
+  ```bash
+  yarn sample-hats-module fmt
+  ```
+
+- HatsModules コントラクトのビルド
+
+  ```bash
+  yarn sample-hats-module build
+  ```
+
+- HatsModules コントラクトのテスト
+
+  ```bash
+  yarn sample-hats-module test
+  ```
+- HatsModules コントラクトをデプロイする
+
+  ```bash
+  yarn sample-hats-module deploy -f sepolia --broadcast --verify
+  ```

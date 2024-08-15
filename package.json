@@ -1,7 +1,7 @@
 {
   "name": "HatsProtocolSample",
   "version": "1.0.0",
-  "private":"true",
+  "private": "true",
   "main": "index.js",
   "repository": "https://github.com/mashharuki/HatsProtocolSample.git",
   "author": "Haruki Kondo",
@@ -10,6 +10,7 @@
     "pkgs/*"
   ],
   "scripts": {
-    "sample": "yarn workspace sample"
+    "sample": "yarn workspace sample",
+    "sample-hats-module": "yarn workspace sample-hats-module"
   }
 }

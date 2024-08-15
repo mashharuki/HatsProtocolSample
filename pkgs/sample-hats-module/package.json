@@ -1,0 +1,14 @@
+{
+  "name": "sample-hats-module",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "setUp": "forge install",
+    "fmt": "forge fmt --check",
+    "build": "forge build --sizes --skip script",
+    "test": "forge test -vvv",
+    "deploy": "forge script script/Deploy.s.sol"
+  }
+}
