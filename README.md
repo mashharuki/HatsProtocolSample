@@ -105,6 +105,34 @@ HatsProtocol を調査・学習するためのサンプルリポジトリです�
   }
   ```
 
+- transferHat
+
+  ```bash
+  yarn sample transferHat
+  ```
+
+  管理権限を持っているアカウントで操作可能。
+
+  ```bash
+  transferHatResult: {
+    status: 'success',
+    transactionHash: '0xaa5366f06f93f5003e36ea612dd80c0608d5b2178f43f327cba7526416f4538f'
+  }
+  Done in 13.16s.
+  ```
+
+  https://sepolia.etherscan.io/tx/0xaa5366f06f93f5003e36ea612dd80c0608d5b2178f43f327cba7526416f4538f
+
+- renounceHat
+
+  ```bash
+  yarn sample renounceHat
+  ```
+
+  ```bash
+
+  ```
+
 - HatsModules コントラクトのセットアップ
 
   ```bash

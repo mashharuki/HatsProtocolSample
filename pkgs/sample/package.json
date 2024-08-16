@@ -10,6 +10,8 @@
     "createHat": "ts-node ./src/createHat.ts",
     "batchCreateHats": "ts-node ./src/batchCreateHats.ts",
     "mintHat": "ts-node ./src/mintHat.ts",
+    "transferHat": "ts-node ./src/transferHat.ts",
+    "renounceHat": "ts-node ./src/renounceHat.ts",
     "subgraph": "ts-node ./src/subgraph.ts"
   },
   "dependencies": {
