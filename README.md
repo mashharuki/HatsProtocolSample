@@ -19,6 +19,21 @@ HatsProtocol を調査・学習するためのサンプルリポジトリです�
   RPC_URL=""
   ```
 
+  `pkgs/sample-hats-module`ディレクトリ直下に `.env`ファイルを作成し、以下の変数をセットする。
+
+  ```txt
+  GC_RPC=
+  POLYGON_RPC=
+  INFURA_KEY=
+  export PRIVATE_KEY=
+  ETHERSCAN_KEY=
+  GNOSISSCAN_KEY=
+  POLYGONSCAN_KEY=
+  OPTIMISM_KEY=
+  ARBISCAN_KEY=
+  FOUNDRY_PROFILE=
+  ```
+
 - サンプルスクリプトの実行
 
   ```bash
@@ -96,6 +111,8 @@ HatsProtocol を調査・学習するためのサンプルリポジトリです�
   yarn sample-hats-module setUp
   ```
 
+  `forge install` が実行される。
+
 - HatsModules コントラクトのフォーマットチェック
 
   ```bash
@@ -113,8 +130,22 @@ HatsProtocol を調査・学習するためのサンプルリポジトリです�
   ```bash
   yarn sample-hats-module test
   ```
+
+  ```bash
+  Ran 5 tests for test/Module.t.sol:Deployment
+  [PASS] test_hatId() (gas: 13088)
+  [PASS] test_hats() (gas: 13212)
+  [PASS] test_implementation() (gas: 13205)
+  [PASS] test_initialization() (gas: 19603)
+  [PASS] test_version() (gas: 18366)
+  Suite result: ok. 5 passed; 0 failed; 0 skipped; finished in 2.05s (1.08ms CPU time)
+
+  Ran 1 test suite in 2.05s (2.05s CPU time): 5 tests passed, 0 failed, 0 skipped (5 total tests)
+  Done in 3.02s.
+  ```
+
 - HatsModules コントラクトをデプロイする
 
   ```bash
-  yarn sample-hats-module deploy -f sepolia --broadcast --verify
+  yarn sample-hats-module deploy --tc Deploy --chain sepolia --broadcast --verify
   ```

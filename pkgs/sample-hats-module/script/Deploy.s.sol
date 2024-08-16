@@ -30,6 +30,7 @@ contract Deploy is Script {
    */
   function deployer() public returns (address) {
     uint256 privKey = vm.envUint("PRIVATE_KEY");
+    console2.log("deployer address: ", vm.rememberKey(privKey));
     return vm.rememberKey(privKey);
   }
 

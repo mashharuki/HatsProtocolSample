@@ -62,10 +62,6 @@ contract Module is HatsModule {
                             INITIALIZOR
   //////////////////////////////////////////////////////////////*/
 
-  /**
-   * @inheritdoc HatsModule メソッド
-   * @param _initData 
-   */
   function _setUp(bytes calldata _initData) internal override {
     // decode init data
   }

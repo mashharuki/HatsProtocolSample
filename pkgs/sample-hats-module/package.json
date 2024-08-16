@@ -7,7 +7,7 @@
   "scripts": {
     "setUp": "forge install",
     "fmt": "forge fmt --check",
-    "build": "forge build --sizes --skip script",
+    "build": "forge build",
     "test": "forge test -vvv",
     "deploy": "forge script script/Deploy.s.sol"
   }
