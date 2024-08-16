@@ -3,13 +3,24 @@ pragma solidity ^0.8.19;
 
 import { Script, console2 } from "forge-std/Script.sol";
 import { Module } from "../src/Module.sol";
+import {
+  HatsModuleFactory, 
+  IHats, 
+  deployModuleInstance, 
+  deployModuleFactory
+} from "hats-module/utils/DeployFunctions.sol";
 
 /**
  * デプロイスクリプト
  */
 contract Deploy is Script {
   Module public implementation;
-  bytes32 public SALT = bytes32(abi.encode("change this to the value of your choice"));
+  address public implementation2;
+  address public instance2;
+  bytes32 public SALT = bytes32(abi.encode(0xe22dfed15d74553ffe7dc973acb1aedc7e978ba4ff4));
+
+  // Deploy Contract
+  HatsModuleFactory public factory2 = HatsModuleFactory(0xfE661c01891172046feE16D3a57c3Cf456729efA);
 
   // default values
   bool internal _verbose = true;
@@ -39,23 +50,35 @@ contract Deploy is Script {
    */
   function _log(string memory prefix) internal view {
     if (_verbose) {
-      console2.log(string.concat(prefix, "Module:"), address(implementation));
+      console2.log(string.concat(prefix, "implementation Module:"), address(implementation));
+      console2.log(string.concat(prefix, "instance Module:"), address(instance2));
     }
   }
 
   /// @dev Deploy the contract to a deterministic address via forge's create2 deployer factory.
   function run() public virtual {
     vm.startBroadcast(deployer());
+    
+    // hat ID
+    uint256 hatId = 12078056106883486628010822758984794541789440701298176471534417391648768;
 
-    /**
-     * @dev Deploy the contract to a deterministic address via forge's create2 deployer factory, which is at this
-     * address on all chains: `0x4e59b44847b379578588920cA78FbF26c0B4956C`.
-     * The resulting deployment address is determined by only two factors:
-     *    1. The bytecode hash of the contract to deploy. Setting `bytecode_hash` to "none" in foundry.toml ensures that
-     *       never differs regardless of where its being compiled
-     *    2. The provided salt, `SALT`
-     */
-    implementation = new Module{ salt: SALT }(_version);
+    // set up the other immutable args
+    bytes memory otherImmutableArgs = abi.encodePacked();
+
+    // set up the init args
+    bytes memory initArgs = abi.encode(_version);
+
+    // set up the salt nonce
+    uint256 saltNonce = 164575476565656565656565656;
+
+    // deploy an instance of the module
+    instance2 = factory2.createHatsModule(
+      implementation2,
+      hatId,
+      otherImmutableArgs,
+      initArgs,
+      saltNonce
+    );
 
     vm.stopBroadcast();
 
@@ -73,7 +96,7 @@ contract DeployPrecompiled is Deploy {
   function run() public override {
     vm.startBroadcast(deployer());
 
-    bytes memory args = abi.encode( /* insert constructor args here */ );
+    bytes memory args = abi.encode( _version);
 
     /// @dev Load and deploy pre-compiled ir-optimized bytecode.
     implementation = Module(deployCode("optimized-out/Module.sol/Module.json", args));

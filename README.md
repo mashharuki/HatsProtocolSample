@@ -147,5 +147,9 @@ HatsProtocol を調査・学習するためのサンプルリポジトリです�
 - HatsModules コントラクトをデプロイする
 
   ```bash
-  yarn sample-hats-module deploy --tc Deploy --chain sepolia --broadcast --verify
+  yarn sample-hats-module deploy -vvv --tc Deploy --chain sepolia --broadcast --verify
+  ```
+
+  ```bash
+
   ```

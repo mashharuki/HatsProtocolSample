@@ -7,7 +7,7 @@
   "scripts": {
     "setUp": "forge install",
     "fmt": "forge fmt --check",
-    "build": "forge build",
+    "build": "FOUNDRY_PROFILE=optimized forge build",
     "test": "forge test -vvv",
     "deploy": "forge script script/Deploy.s.sol"
   }
