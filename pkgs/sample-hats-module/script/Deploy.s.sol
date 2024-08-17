@@ -14,6 +14,7 @@ import {
  * デプロイスクリプト
  */
 contract Deploy is Script {
+  Module public instance;
   Module public implementation;
   address public implementation2;
   address public instance2;

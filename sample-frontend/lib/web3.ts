@@ -1,5 +1,6 @@
 import { connectorsForWallets } from '@rainbow-me/rainbowkit';
 import { rainbowWallet, walletConnectWallet } from '@rainbow-me/rainbowkit/wallets';
+import { intmaxwalletsdk } from "intmax-walletsdk/rainbowkit";
 import _ from 'lodash';
 import { Chain, http } from 'viem';
 import { arbitrum, base, mainnet, optimism, polygon, sepolia } from 'viem/chains';
@@ -8,6 +9,46 @@ import { createConfig, createStorage } from 'wagmi';
 import { chainsList } from './chains';
 
 const ALCHEMY_ID = process.env.NEXT_PUBLIC_ALCHEMY_ID;
+
+const additionalWallets = [
+	intmaxwalletsdk({
+		wallet: {
+			url: "https://intmaxwallet-sdk-wallet.vercel.app/",
+			name: "IntmaxWalletSDK Demo",
+			iconUrl: "https://intmaxwallet-sdk-wallet.vercel.app/vite.svg",
+		},
+		metadata: {
+			name: "Rainbow-Kit Demo",
+			description: "Rainbow-Kit Demo",
+			icons: ["https://intmaxwallet-sdk-wallet.vercel.app/vite.svg"],
+		},
+	}),
+	intmaxwalletsdk({
+		mode: "iframe",
+		wallet: {
+			url: "https://intmaxwallet-sdk-wallet.vercel.app/",
+			name: "IntmaxWalletSDK Demo",
+			iconUrl: "https://intmaxwallet-sdk-wallet.vercel.app/vite.svg",
+		},
+		metadata: {
+			name: "Rainbow-Kit Demo",
+			description: "Rainbow-Kit Demo",
+			icons: ["https://intmaxwallet-sdk-wallet.vercel.app/vite.svg"],
+		},
+	}),
+	intmaxwalletsdk({
+		wallet: {
+			url: "https://wallet.intmax.io",
+			name: "INTMAX Wallet",
+			iconUrl: "https://wallet.intmax.io/favicon.ico",
+		},
+		metadata: {
+			name: "Rainbow-Kit Demo",
+			description: "Rainbow-Kit Demo",
+			icons: ["https://intmaxwallet-sdk-wallet.vercel.app/vite.svg"],
+		},
+	}),
+];
 
 export const chainsMap = (chainId?: number) =>
   chainId
@@ -27,6 +68,10 @@ const connectors = connectorsForWallets(
     {
       groupName: 'Recommended',
       wallets: [rainbowWallet, walletConnectWallet],
+    },
+    {
+      groupName: "IntmaxWalletSDK",
+      wallets: additionalWallets,
     },
   ],
   {

@@ -14,6 +14,10 @@ import {
 
 import { Button } from './ui/button';
 
+/**
+ * ConnectWallet Component
+ * @returns 
+ */
 const ConnectWallet = () => {
   const [blockie, setBlockie] = useState<string | undefined>();
   const { address } = useAccount();
