@@ -19,7 +19,9 @@
     "hsgClaimSigner": "ts-node ./src/hsgClaimSigner.ts",
     "hsgIsValidSigner": "ts-node ./src/hsgIsValidSigner.ts",
     "claimedAndStillValid": "ts-node ./src/claimedAndStillValid.ts",
-    "getHsgInstanceProperties": "ts-node ./src/getHsgInstanceProperties.ts"
+    "getHsgInstanceProperties": "ts-node ./src/getHsgInstanceProperties.ts",
+    "hatsAccount1ofNClient": "ts-node ./src/hatsAccount1ofNClient.ts",
+    "executeFromHatsAccount1ofN": "ts-node ./src/executeFromHatsAccount1ofN.ts"
   },
   "dependencies": {
     "@hatsprotocol/hats-account-sdk": "^0.0.5",

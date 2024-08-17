@@ -437,6 +437,43 @@ HatsProtocol を調査・学習するためのサンプルリポジトリです�
   ownerHat: 12078056106883486628010822758984794541789440701298176471534417391648768n
   ```
 
+- HatsAccount1ofNClient を作成する
+
+  ```bash
+  yarn sample hatsAccount1ofNClient
+  ```
+
+  ```bash
+  createHatsAccountResult: {
+    status: 'success',
+    transactionHash: '0x552818326496076b343aed12ad7d1166ddd8a20cbce0656400bc19ac1ca5a118',
+    newAccount: '0x675d12D78338E484D8D18E4df88ab5158b01a5aE'
+  }
+  ✨  Done in 14.05s.
+  ```
+
+  [トランザクション](https://sepolia.etherscan.io/tx/0x552818326496076b343aed12ad7d1166ddd8a20cbce0656400bc19ac1ca5a118)
+
+  [作成された HsgInstance](https://sepolia.etherscan.io/address/0x675d12D78338E484D8D18E4df88ab5158b01a5aE)
+
+- executeFromHatsAccount1ofN の機能を試す
+
+  ```bash
+  yarn sample executeFromHatsAccount1ofN
+  ```
+
+  今回はコントラクトから 0.05 ETH を特定のアドレスに送信してみました。
+
+  ```bash
+  executionResult: {
+    status: 'success',
+    transactionHash: '0xe09b071a8061f252d982a2e6f84c9bfc42d44087029e59f5a36ec472bc8a1abe'
+  }
+  ✨  Done in 18.01s.
+  ```
+
+  [トランザクション](https://sepolia.etherscan.io/tx/0xe09b071a8061f252d982a2e6f84c9bfc42d44087029e59f5a36ec472bc8a1abe)
+
 - HatsModules コントラクトのセットアップ
 
   ```bash
