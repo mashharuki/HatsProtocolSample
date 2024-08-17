@@ -11,7 +11,8 @@ export default async function ChainIdPage({
 }: {
   params: { chainId: number };
 }) {
-  const isChainSupported = supportedChains.includes(params.chainId);
+  console.log(params)
+  const isChainSupported = supportedChains.includes(Number(params.chainId));
 
   return (
     <div>
