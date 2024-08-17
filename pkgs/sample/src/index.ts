@@ -1,8 +1,15 @@
-import {createPublicClient, createWalletClient, formatEther, http} from "viem";
-import {sepolia} from "viem/chains";
-import * as dotenv from "dotenv";
-import {privateKeyToAccount} from "viem/accounts";
 import {HatsClient} from "@hatsprotocol/sdk-v1-core";
+import * as dotenv from "dotenv";
+import {
+  createPublicClient,
+  createWalletClient,
+  formatEther,
+  http,
+  PublicClient,
+  WalletClient,
+} from "viem";
+import {privateKeyToAccount} from "viem/accounts";
+import {sepolia} from "viem/chains";
 
 dotenv.config();
 
@@ -13,13 +20,13 @@ const {RPC_URL, PRIVATE_KEY} = process.env;
 export const account = privateKeyToAccount(PRIVATE_KEY as `0x${string}`);
 
 // Sepolia ネットワークのクライアントを作成する
-export const client = createPublicClient({
+export const client: PublicClient = createPublicClient({
   chain: sepolia,
   transport: http(RPC_URL),
 });
 
 // Wallet Client の作成
-export const walletClient = createWalletClient({
+export const walletClient: WalletClient = createWalletClient({
   chain: sepolia,
   transport: http(RPC_URL),
   account,
@@ -29,7 +36,7 @@ export const walletClient = createWalletClient({
 export const hatsClient = new HatsClient({
   chainId: sepolia.id,
   publicClient: client,
-  walletClient,
+  walletClient: walletClient,
 });
 
 /**

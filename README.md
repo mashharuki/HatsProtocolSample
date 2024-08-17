@@ -140,7 +140,301 @@ HatsProtocol を調査・学習するためのサンプルリポジトリです�
   ```
 
   ```bash
+  module2: {
+    name: 'JokeRace Eligibility',
+    details: [
+      'By using this module, communities can elect the wearers of a hat through a JokeRace election. More specifically, the eligible wearers are creators of the top voted proposals in the election',
+      'The number of winners of an election, and thus the number of possible wearers made eligible through this integration, is configurable. Additionally, a term period can be set, after which the winners will no longer be eligible to wear the hat.',
+      'You must have already deployed a JokeRace contest before deploying this Eligibility Module.',
+      'NOTE: proposals ranking is currently only supported in Jokerace contests with down-voting disabled, and so this module only works with down-voting disabled contests.'
+    ],
+    links: [
+      {
+        label: 'GitHub',
+        link: 'https://github.com/Hats-Protocol/jokerace-eligibility'
+      }
+    ],
+    parameters: [
+      {
+        label: 'Module Admin Hat ID',
+        functionName: 'ADMIN_HAT',
+        displayType: 'hat'
+      },
+      {
+        label: 'Contest Address',
+        functionName: 'underlyingContest',
+        displayType: 'jokerace'
+      },
+      {
+        label: 'Term End',
+        functionName: 'termEnd',
+        displayType: 'timestamp'
+      },
+      {
+        label: 'Number Of Elected Hat Wearers',
+        functionName: 'topK',
+        displayType: 'default'
+      }
+    ],
+    type: { eligibility: true, toggle: false, hatter: false },
+    tags: [],
+    implementationAddress: '0xAE0e56A0c509dA713722c1aFFcF4B5f1C6CDc73a',
+    deployments: [
+      { chainId: '5', block: '10092827' },
+      { chainId: '11155111', block: '4749517' },
+      { chainId: '10', block: '112566278' },
+      { chainId: '137', block: '50286793' },
+      { chainId: '42161', block: '153224468' },
+      { chainId: '100', block: '31089668' },
+      { chainId: '8453', block: '12329992' },
+      { chainId: '42220', block: '24755770' }
+    ],
+    creationArgs: {
+      useHatId: true,
+      immutable: [ [Object] ],
+      mutable: [ [Object], [Object], [Object] ]
+    },
+    customRoles: [
+      {
+        id: 'jokeraceAdmin',
+        name: 'JokeRace Admin',
+        criteria: 'ADMIN_HAT',
+        hatAdminsFallback: true
+      }
+    ],
+    writeFunctions: [
+      {
+        roles: [Array],
+        functionName: 'pullElectionResults',
+        label: 'Pull Election Results',
+        description: "Pulls the election's final results",
+        primary: true,
+        args: []
+      },
+      {
+        roles: [Array],
+        functionName: 'reelection',
+        label: 'New Term',
+        description: 'Setup a new term, once the current term has ended',
+        primary: true,
+        args: [Array]
+      }
+    ],
+    abi: [
+      {
+        inputs: [Array],
+        stateMutability: 'nonpayable',
+        type: 'constructor'
+      },
+      {
+        inputs: [],
+        name: 'JokeraceEligibility_ContestNotCompleted',
+        type: 'error'
+      },
+      {
+        inputs: [],
+        name: 'JokeraceEligibility_MustHaveDownvotingDisabled',
+        type: 'error'
+      },
+      {
+        inputs: [],
+        name: 'JokeraceEligibility_MustHaveSortingEnabled',
+        type: 'error'
+      },
+      { inputs: [], name: 'JokeraceEligibility_NotAdmin', type: 'error' },
+      {
+        inputs: [],
+        name: 'JokeraceEligibility_TermNotCompleted',
+        type: 'error'
+      },
+      {
+        anonymous: false,
+        inputs: [Array],
+        name: 'Initialized',
+        type: 'event'
+      },
+      {
+        anonymous: false,
+        inputs: [Array],
+        name: 'NewTerm',
+        type: 'event'
+      },
+      {
+        inputs: [],
+        name: 'ADMIN_HAT',
+        outputs: [Array],
+        stateMutability: 'pure',
+        type: 'function'
+      },
+      {
+        inputs: [],
+        name: 'HATS',
+        outputs: [Array],
+        stateMutability: 'pure',
+        type: 'function'
+      },
+      {
+        inputs: [],
+        name: 'IMPLEMENTATION',
+        outputs: [Array],
+        stateMutability: 'pure',
+        type: 'function'
+      },
+      {
+        inputs: [Array],
+        name: 'eligibleWearersPerContest',
+        outputs: [Array],
+        stateMutability: 'view',
+        type: 'function'
+      },
+      {
+        inputs: [Array],
+        name: 'getWearerStatus',
+        outputs: [Array],
+        stateMutability: 'view',
+        type: 'function'
+      },
+      {
+        inputs: [],
+        name: 'hatId',
+        outputs: [Array],
+        stateMutability: 'pure',
+        type: 'function'
+      },
+      {
+        inputs: [],
+        name: 'pullElectionResults',
+        outputs: [Array],
+        stateMutability: 'nonpayable',
+        type: 'function'
+      },
+      {
+        inputs: [Array],
+        name: 'reelection',
+        outputs: [],
+        stateMutability: 'nonpayable',
+        type: 'function'
+      },
+      {
+        inputs: [],
+        name: 'reelectionAllowed',
+        outputs: [Array],
+        stateMutability: 'view',
+        type: 'function'
+      },
+      {
+        inputs: [Array],
+        name: 'setUp',
+        outputs: [],
+        stateMutability: 'nonpayable',
+        type: 'function'
+      },
+      {
+        inputs: [],
+        name: 'termEnd',
+        outputs: [Array],
+        stateMutability: 'view',
+        type: 'function'
+      },
+      {
+        inputs: [],
+        name: 'topK',
+        outputs: [Array],
+        stateMutability: 'view',
+        type: 'function'
+      },
+      {
+        inputs: [],
+        name: 'underlyingContest',
+        outputs: [Array],
+        stateMutability: 'view',
+        type: 'function'
+      },
+      {
+        inputs: [],
+        name: 'version',
+        outputs: [Array],
+        stateMutability: 'view',
+        type: 'function'
+      },
+      {
+        inputs: [],
+        name: 'version_',
+        outputs: [Array],
+        stateMutability: 'view',
+        type: 'function'
+      }
+    ]
+  }
+  Current Block Number: 6515787n
+  module3: undefined
+  module4: [ undefined, undefined ]
+  ```
 
+- HatsSignerGate SDK のサンプルスクリプトを実行する
+
+  インスタンスを作成する。
+
+  ```bash
+  yarn sample hatsSignerGate
+  ```
+
+  ```bash
+  createHsgResult: {
+    status: 'success',
+    transactionHash: '0xdd6fd3c7bd0173153103f0fba3e997cd66563bb2a08f9f4d2822d20df4b471f2',
+    newHsgInstance: '0xd0574A652382c16EA68Fbe725da2b9b94Dfe3567',
+    newSafeInstance: '0x1E10452002610FEcA53A773F5EaCB9a95684d484'
+  }
+  ✨  Done in 68.67s.
+  ```
+
+  [トランザクション](https://sepolia.etherscan.io/tx/0xdd6fd3c7bd0173153103f0fba3e997cd66563bb2a08f9f4d2822d20df4b471f2)
+
+  [作成された HsgInstance](https://sepolia.etherscan.io/address/0xd0574A652382c16EA68Fbe725da2b9b94Dfe3567)
+
+  [作成された SafeInstance](https://sepolia.etherscan.io/address/0x1E10452002610FEcA53A773F5EaCB9a95684d484)
+
+- hsgClaimSigner の機能を呼び出す
+
+  ```bash
+  yarn sample hsgClaimSigner
+  ```
+
+- hsgIsValidSigner の機能を試す
+
+  ```bash
+  yarn sample hsgIsValidSigner
+  ```
+
+  ```bash
+  isValidSignerResult: false
+  ```
+
+- claimedAndStillValid の機能を試す
+
+  ```bash
+  yarn sample claimedAndStillValid
+  ```
+
+  ```bash
+  validSignerCount: 0n
+  claimedAndStillValidResult: false
+  ```
+
+- getHsgInstanceProperties の機能を試す
+
+  ```bash
+  yarn sample getHsgInstanceProperties
+  ```
+
+  ```bash
+  signersHat: 12078056518259625958312333297727090181127066946982142879929383228801024n
+  safe: 0x1E10452002610FEcA53A773F5EaCB9a95684d484
+  minThreshold: 2n
+  targetThreshold: 2n
+  maxSigners: 3n
+  ownerHat: 12078056106883486628010822758984794541789440701298176471534417391648768n
   ```
 
 - HatsModules コントラクトのセットアップ
