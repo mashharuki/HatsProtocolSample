@@ -19,7 +19,7 @@ export const getRpcUrl = (chainId: number) => {
 export const viemPublicClient = (chainId: number) => {
   return createPublicClient({
     chain: chainsMap(chainId),
-    transport: http(getRpcUrl(chainId), { batch: true }),
+    transport: http(getRpcUrl(chainId) as any, { batch: true }),
   });
 };
 
