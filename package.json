@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "sample": "yarn workspace sample",
-    "sample-hats-module": "yarn workspace sample-hats-module"
+    "sample-hats-module": "yarn workspace sample-hats-module",
+    "frontend": "yarn workspace frontend"
   }
 }

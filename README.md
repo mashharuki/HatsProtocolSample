@@ -140,7 +140,7 @@ HatsProtocol を調査・学習するためのサンプルリポジトリです�
   ```
 
   ```bash
-  
+
   ```
 
 - HatsModules コントラクトのセットアップ
@@ -190,4 +190,16 @@ HatsProtocol を調査・学習するためのサンプルリポジトリです�
 
   ```bash
 
+  ```
+
+- フロントエンドのビルド
+
+  ```bash
+  yarn frontend build
+  ```
+
+- フロントエンドの起動
+
+  ```bash
+  yarn frontend dev
   ```
