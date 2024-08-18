@@ -13,10 +13,25 @@ export const ipfsToHttp = (ipfsUrl: string) => {
   return `${GATEWAY_URL}${cid}`;
 };
 
+/**
+ * ipfs:// という文言を削除するメソッド
+ * @param uri 
+ * @returns 
+ */
+function removeIpfsPrefix(uri: string): string {
+  const prefix = 'ipfs://';
+  if (uri.startsWith(prefix)) {
+      return uri.substring(prefix.length);
+  }
+  return uri;
+}
+
 export const resolveIpfsUri = async (uri: string): Promise<IpfsDetails> => {
   const ipfsGateway = 'https://ipfs.io/ipfs/';
-  const cid = uri.split('ipfs://')[1];
+  let cid = removeIpfsPrefix(uri);
   const response = await fetch(`${ipfsGateway}${cid}`);
+  console.log(`${ipfsGateway}${cid}`)
+  console.log('response:', response);
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }

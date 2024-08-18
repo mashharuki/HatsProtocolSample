@@ -1,4 +1,3 @@
-import { hatIdIpToDecimal } from '@hatsprotocol/sdk-v1-core';
 import { Hat, HatsSubgraphClient } from '@hatsprotocol/sdk-v1-subgraph';
 import _ from 'lodash';
 import { Suspense } from 'react';
@@ -13,8 +12,21 @@ import { Skeleton } from '@/components/ui/skeleton';
 import WearersListCard from '@/components/wearers-list-card';
 import { ipfsToHttp, resolveIpfsUri } from '@/lib/ipfs';
 import { IpfsDetails } from '@/types';
+import { hatIdIpToDecimal } from '@hatsprotocol/sdk-v1-core';
+import { optimism, sepolia } from 'viem/chains';
 
-const hatsSubgraphClient = new HatsSubgraphClient({});
+const hatsSubgraphClient = new HatsSubgraphClient({
+  config: {
+    [sepolia.id]: {
+      endpoint:
+        "https://api.studio.thegraph.com/query/55784/hats-v1-sepolia/version/latest",
+    },
+    [optimism.id]: {
+      endpoint:
+        "https://api.studio.thegraph.com/query/55784/hats-v1-optimism/version/latest",
+    },
+  },
+});
 
 interface HatDataProps {
   chainId: number;
@@ -27,6 +39,11 @@ interface ExtendedHat extends Hat {
   errorMessage?: string;
 }
 
+/**
+ * HatPage Component
+ * @param param0 
+ * @returns 
+ */
 export default async function HatPage({
   params,
 }: {
@@ -96,18 +113,27 @@ export default async function HatPage({
   );
 }
 
+/**
+ * getHatData method
+ * @param param0 
+ * @returns 
+ */
 const getHatData = async ({
   chainId,
   hatId,
 }: HatDataProps): Promise<ExtendedHat | null> => {
   const trueHatId = _.first(hatId);
   if (!trueHatId) return null;
+  console.log('chainId:', chainId);
+  console.log('trueHatId:', trueHatId);
   const localHatId = hatIdIpToDecimal(trueHatId);
+  console.log('localHatId:', localHatId);
 
   try {
+    // get the hat data from the subgraph
     const hat = await hatsSubgraphClient.getHat({
       chainId: chainId,
-      hatId: BigInt(localHatId),
+      hatId: BigInt(trueHatId.toString()),
       props: {
         details: true, // get the hat details
         imageUri: true, // get the hat image uri
@@ -126,11 +152,13 @@ const getHatData = async ({
       },
     });
 
+    console.log('hat:', hat);
+
     let detailsContent: any = { name: '', description: '' }; // Default object structure
     let imageContent: string = '';
 
     if (hat.details) {
-      const resolvedDetails = await resolveIpfsUri(hat.details);
+      const resolvedDetails = await resolveIpfsUri(hat.imageUri!);
 
       const criteriaDetails = resolvedDetails.eligibility?.criteria.map(
         (criterion) => {

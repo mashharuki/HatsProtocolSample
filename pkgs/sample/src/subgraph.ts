@@ -21,9 +21,10 @@ const hatsSubgraphClient = new HatsSubgraphClient({
 const main = async () => {
   // hatの情報を取得する。
   const hat = await hatsSubgraphClient.getHat({
-    chainId: optimism.id, // optimism
+    chainId: sepolia.id,
     hatId: BigInt(
-      "0x0000000100020001000100000000000000000000000000000000000000000000"
+      "0x000001c000020000000000000000000000000000000000000000000000000000"
+      // 12664760623049752223273549914669722706079586129193058213113992646181026529280
     ),
     props: {
       maxSupply: true, // get the maximum amount of wearers for the hat
@@ -47,13 +48,10 @@ const main = async () => {
 
   // サンプル用のクエリを実行する
   const res = await hatsSubgraphClient.getHatsByIds({
-    chainId: optimism.id, // optimism
+    chainId: sepolia.id, // optimism
     hatIds: [
       BigInt(
-        "0x0000000100020001000100000000000000000000000000000000000000000000"
-      ),
-      BigInt(
-        "0x0000000100020001000000000000000000000000000000000000000000000000"
+        12078056929635765288613843836469385820464693192666109288324349065953280
       ),
     ],
     props: {

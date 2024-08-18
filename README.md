@@ -40,10 +40,71 @@ HatsProtocol を調査・学習するためのサンプルリポジトリです�
   yarn sample sample
   ```
 
+- HatID を IP に変換する
+
+  ```bash
+  yarn sample hatIdToIp
+  ```
+
+  ```bash
+  hatIdHex: 0x000001c000020000000000000000000000000000000000000000000000000000
+  hatIdIp: 448.2
+  ✨  Done in 1.65s.
+  ```
+
 - Subgraph 用の SDK のサンプルスクリプトの実行
 
   ```bash
   yarn sample subgraph
+  ```
+
+  ```bash
+  hat: {
+    id: '0x000001c000020000000000000000000000000000000000000000000000000000',
+    maxSupply: '500',
+    wearers: [ { id: '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266' } ],
+    events: [
+      {
+        id: 'HatMinted-6510649-131',
+        transactionID: '0xaa5366f06f93f5003e36ea612dd80c0608d5b2178f43f327cba7526416f4538f',
+        __typename: 'HatMintedEvent',
+        wearer: [Object],
+        operator: '0x51908f598a5e0d8f1a3babfa6df76f9704dad072'
+      },
+      {
+        id: 'HatBurned-6510649-131',
+        transactionID: '0xaa5366f06f93f5003e36ea612dd80c0608d5b2178f43f327cba7526416f4538f',
+        __typename: 'HatBurnedEvent',
+        wearer: [Object],
+        operator: '0x51908f598a5e0d8f1a3babfa6df76f9704dad072'
+      },
+      {
+        id: 'HatMinted-6492802-254',
+        transactionID: '0x734483b0ebba7e8ad3a75c263a1e0742e61215fb33afae2feb06356fce30987c',
+        __typename: 'HatMintedEvent',
+        wearer: [Object],
+        operator: '0x51908f598a5e0d8f1a3babfa6df76f9704dad072'
+      },
+      {
+        id: 'HatCreated-6492791-169',
+        transactionID: '0xaa70d7e8bf6e7eaf2ee586297a93892942b6db0385a90f11f117de9826fd6654',
+        __typename: 'HatCreatedEvent',
+        hatDetails: 'This is a sample Hat2',
+        hatMaxSupply: '500',
+        hatEligibility: '0x0000000000000000000000000000000000000001',
+        hatToggle: '0x0000000000000000000000000000000000000001',
+        hatMutable: true,
+        hatImageUri: 'ipfs://bafkreiflezpk3kjz6zsv23pbvowtatnd5hmqfkdro33x5mh2azlhne3ah4'
+      }
+    ]
+  }
+    hatsByIds: [
+    {
+      id: '0x000001c000020000000000000000000000000000000000000000000000000000',
+      wearers: [ [Object] ]
+    }
+  ]
+  ✨  Done in 2.63s.
   ```
 
 - TopHat をミントするスクリプトの実行
@@ -534,3 +595,7 @@ HatsProtocol を調査・学習するためのサンプルリポジトリです�
   ```bash
   yarn frontend dev
   ```
+
+### 参考文献
+
+1. [GitHub - Hats-Protocol/hats-module](https://github.com/Hats-Protocol/hats-module/tree/e83bd72cb3eebdbeadabcb63e3c6f69ab61a5562)

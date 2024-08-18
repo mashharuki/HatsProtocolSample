@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "sample": "ts-node ./src/index.ts",
+    "hatIdToIp": "ts-node ./src/hatIdToIp.ts",
     "mintTopHat": "ts-node ./src/mintTopHat.ts",
     "createHat": "ts-node ./src/createHat.ts",
     "batchCreateHats": "ts-node ./src/batchCreateHats.ts",

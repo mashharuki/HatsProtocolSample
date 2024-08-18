@@ -21,7 +21,7 @@ contract Deploy is Script {
   bytes32 public SALT = bytes32(abi.encode(0xe22dfed15d74553ffe7dc973acb1aedc7e978ba4ff4));
 
   // Deploy Contract
-  HatsModuleFactory public factory2 = HatsModuleFactory(0xfE661c01891172046feE16D3a57c3Cf456729efA);
+  HatsModuleFactory public factory2 = HatsModuleFactory(0x0a3f85fa597B6a967271286aA0724811acDF5CD9);
 
   // default values
   bool internal _verbose = true;
@@ -70,15 +70,15 @@ contract Deploy is Script {
     bytes memory initArgs = abi.encode(_version);
 
     // set up the salt nonce
-    uint256 saltNonce = 164575476565656565656565656;
+    uint256 saltNonce = 164575476565656565656565455656;
 
     // deploy an instance of the module
     instance2 = factory2.createHatsModule(
       implementation2,
       hatId,
       otherImmutableArgs,
-      initArgs,
-      saltNonce
+      initArgs
+      //saltNonce
     );
 
     vm.stopBroadcast();

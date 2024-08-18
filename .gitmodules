@@ -4,3 +4,7 @@
 [submodule "lib/hats-module"]
 	path = pkgs/sample-hats-module/lib/hats-module
 	url = https://github.com/Hats-Protocol/hats-module
+[submodule "pkgs/sample-hats-module/lib/hats-module"]
+	path = pkgs/sample-hats-module/lib/hats-module
+	url = https://github.com/Hats-Protocol/hats-module
+	branch = main

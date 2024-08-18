@@ -30,7 +30,7 @@ export default function Home() {
               variant="link"
               className="font-semibold text-cyan-500"
             >
-              <Link href="/11155111">Explore a Hat</Link>
+              <Link href="/11155111/0x000001c000020000000000000000000000000000000000000000000000000000">Explore a Hat</Link>
             </Button>
           </div>
         </div>
