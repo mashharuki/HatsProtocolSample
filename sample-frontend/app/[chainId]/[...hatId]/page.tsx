@@ -80,10 +80,12 @@ export default async function HatPage({
         </Suspense>
 
         <Suspense fallback={<p>Loading...</p>}>
-          <ResponsibilitiesCard
-            authorities={hatData.detailsDecoded.authorities}
-            responsibilities={hatData.detailsDecoded.responsibilities}
-          />
+          { hatData.detailsDecoded.authorities && hatData.detailsDecoded.responsibilities && (
+            <ResponsibilitiesCard
+              authorities={hatData.detailsDecoded.authorities}
+              responsibilities={hatData.detailsDecoded.responsibilities}
+            />
+          )}
         </Suspense>
 
         <Suspense fallback={<p>Loading...</p>}>
@@ -157,7 +159,12 @@ const getHatData = async ({
     let detailsContent: any = { name: '', description: '' }; // Default object structure
     let imageContent: string = '';
 
-    if (hat.details) {
+    detailsContent = {
+      name: hat.details ?? '',
+      description: hat.details ?? '',
+    };
+    
+    if (false) {
       const resolvedDetails = await resolveIpfsUri(hat.imageUri!);
 
       const criteriaDetails = resolvedDetails.eligibility?.criteria.map(
