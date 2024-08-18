@@ -16,6 +16,11 @@ export const getRpcUrl = (chainId: number) => {
   return get(RPC_URLS, chainId);
 };
 
+/**
+ * Viem用のクライアントインスタンスを生成するメソッド
+ * @param chainId 
+ * @returns 
+ */
 export const viemPublicClient = (chainId: number) => {
   return createPublicClient({
     chain: chainsMap(chainId),
@@ -23,6 +28,11 @@ export const viemPublicClient = (chainId: number) => {
   });
 };
 
+/**
+ * Hats Protocol SDK用のクライアントインスタンスを生成するメソッド
+ * @param chainId 
+ * @returns 
+ */
 export async function createHatsClient(
   chainId: number | undefined
 ): Promise<HatsClient | undefined> {
@@ -49,6 +59,10 @@ export async function createHatsClient(
   }
 }
 
+/**
+ * HatsProtocolのSubgraph用のクライアントインスタンスを生成するメソッド
+ * @returns 
+ */
 export function createSubgraphClient(): HatsSubgraphClient {
   if (process.env.NODE_ENV === 'development') {
     return new HatsSubgraphClient({});
@@ -57,6 +71,11 @@ export function createSubgraphClient(): HatsSubgraphClient {
   return new HatsSubgraphClient({});
 }
 
+/**
+ * HatsModulesSDK用のクライアントインスタンスを生成するメソッド
+ * @param chainId 
+ * @returns 
+ */
 export async function createHatsModulesClient(
   chainId: number | undefined
 ): Promise<HatsModulesClient | undefined> {

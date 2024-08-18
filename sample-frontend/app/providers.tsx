@@ -37,6 +37,11 @@ function getQueryClient() {
 
 const queryClient = getQueryClient();
 
+/**
+ * Providers Component for the app
+ * @param param0
+ * @returns 
+ */
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <WagmiProvider config={wagmiConfig}>

@@ -10,6 +10,10 @@ import { chainsList } from './chains';
 
 const ALCHEMY_ID = process.env.NEXT_PUBLIC_ALCHEMY_ID;
 
+/**
+ * 追加のウォレットの設定
+ * ※ 今回はIntmaxWalletSDKのデモ用ウォレットを追加
+ */
 const additionalWallets = [
 	intmaxwalletsdk({
 		wallet: {

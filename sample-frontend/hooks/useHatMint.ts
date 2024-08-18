@@ -19,6 +19,9 @@ const useHatMint = ({
   const txDescription =
     hatId && `Minted hat ${hatIdDecimalToIp(BigInt(hatId))}`;
 
+  /**
+   * Hatを民とするメソッド
+   */
   const {
     writeAsync,
     isLoading,

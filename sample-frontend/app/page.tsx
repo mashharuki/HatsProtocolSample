@@ -3,6 +3,10 @@ import Link from 'next/link';
 import Header from '@/components/header';
 import { Button } from '@/components/ui/button';
 
+/**
+ * Home component
+ * @returns 
+ */
 export default function Home() {
   return (
     <main className="min-h-screen w-full gap-y-12">
@@ -30,6 +34,7 @@ export default function Home() {
               variant="link"
               className="font-semibold text-cyan-500"
             >
+              {/* 現在は固定値になっているので動的に設定できるようにする必要あり */}
               <Link href="/11155111/0x000001c000020000000000000000000000000000000000000000000000000000">Explore a Hat</Link>
             </Button>
           </div>
