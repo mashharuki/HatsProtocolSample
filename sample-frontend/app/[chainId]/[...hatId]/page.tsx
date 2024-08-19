@@ -15,6 +15,7 @@ import { IpfsDetails } from '@/types';
 import { hatIdIpToDecimal } from '@hatsprotocol/sdk-v1-core';
 import { optimism, sepolia } from 'viem/chains';
 
+// SubGraph用のクライアントインスタンスを生成
 const hatsSubgraphClient = new HatsSubgraphClient({
   config: {
     [sepolia.id]: {
