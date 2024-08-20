@@ -577,23 +577,64 @@ HatsProtocol を調査・学習するためのサンプルリポジトリです�
 - HatsModules コントラクトをデプロイする
 
   ```bash
-  yarn sample-hats-module deploy -vvv --tc Deploy --chain sepolia --broadcast --verify
+  yarn sample-hats-module deploy -vvv -f sepolia --broadcast --tc Deploy
   ```
 
   ```bash
+  [⠊] Compiling...
+  No files changed, compilation skipped
+  Script ran successfully.
 
+  == Logs ==
+    Module: 0x6FE1ACeaa808095122Ddb9583718F7789E808068
+
+  ## Setting up 1 EVM.
+
+  ==========================
+
+  Chain 11155111
+
+  Estimated gas price: 4.485515613 gwei
+
+  Estimated total gas used for script: 659336
+
+  Estimated amount required: 0.002957461922212968 ETH
+
+  ==========================
+
+  ##### sepolia
+  ✅  [Success]Hash: 0x9ecea2811aaac332a566a298614a55bc456cac05bf3fc35d2956f4fd80b98460
+  Block: 6536359
+  Paid: 0.001446508407557616 ETH (477516 gas * 3.029235476 gwei)
+
+  ✅ Sequence #1 on sepolia | Total Paid: 0.001446508407557616 ETH (477516 gas * avg 3.029235476 gwei)
+
+
+  ==========================
+
+  ONCHAIN EXECUTION COMPLETE & SUCCESSFUL.
+
+  Transactions saved to: /Users/harukikondo/git/HatsProtocolSample/pkgs/sample-hats-module/broadcast/Deploy.s.sol/11155111/run-latest.json
+
+  Sensitive values saved to: /Users/harukikondo/git/HatsProtocolSample/pkgs/sample-hats-module/cache/Deploy.s.sol/11155111/run-latest.json
+
+  ✨  Done in 36.41s.
   ```
 
 - フロントエンドのビルド
 
+  `sample-frontend` 配下で実行
+
   ```bash
-  yarn frontend build
+  yarn build
   ```
 
 - フロントエンドの起動
 
+  `sample-frontend` 配下で実行
+
   ```bash
-  yarn frontend dev
+  yarn dev
   ```
 
 ### 参考文献

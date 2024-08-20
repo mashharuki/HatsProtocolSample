@@ -10,7 +10,7 @@ contract Deploy is Script {
 
   // default values
   bool internal _verbose = true;
-  string internal _version = "0.0.1"; // increment this with each new deployment
+  string internal _version = "0.0.5"; // increment this with each new deployment
 
   /// @dev Override default values, if desired
   function prepare(bool verbose, string memory version) public {
