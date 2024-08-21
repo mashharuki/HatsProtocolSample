@@ -39,7 +39,7 @@ export const resolveIpfsUri = async (uri: string): Promise<IpfsDetails> => {
   const ipfsGateway = 'https://ipfs.io/ipfs/';
   let cid = removeIpfsPrefix(uri);
 
-  const data = await hatsDetailsClient.get(cid);
+  const data: any = await hatsDetailsClient.get(cid);
   console.log('data:', data);
   /*
   const response = await fetch(`${ipfsGateway}${cid}`);

@@ -26,6 +26,7 @@
     "intmax-walletsdk": "0.0.4",
     "lucide-react": "^0.359.0",
     "next": "14.1.0",
+    "next-pwa": "^5.6.0",
     "next-themes": "^0.3.0",
     "pino": "7.11.0",
     "react": "^18",

@@ -70,12 +70,12 @@ export const explorerUrl = (chainId?: number) =>
 const connectors = connectorsForWallets(
   [
     {
-      groupName: 'Recommended',
-      wallets: [rainbowWallet, walletConnectWallet],
-    },
-    {
       groupName: "IntmaxWalletSDK",
       wallets: additionalWallets,
+    },
+    {
+      groupName: 'Recommended',
+      wallets: [rainbowWallet, walletConnectWallet],
     },
   ],
   {
