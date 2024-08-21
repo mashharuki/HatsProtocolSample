@@ -3,11 +3,12 @@ pragma solidity ^0.8.19;
 
 // import { console2 } from "forge-std/Test.sol"; // remove before deploy
 import { HatsModule } from "hats-module/HatsModule.sol";
+import 'openzeppelin-contracts/contracts/metatx/ERC2771Context.sol';
 
 /**
  * HatsModuleを継承したModuleコントラクト
  */
-contract Module is HatsModule {
+contract Module is HatsModule, ERC2771Context {
   /*//////////////////////////////////////////////////////////////
                             CUSTOM ERRORS
   //////////////////////////////////////////////////////////////*/
@@ -56,7 +57,7 @@ contract Module is HatsModule {
 
   /// @notice Deploy the implementation contract and set its version
   /// @dev This is only used to deploy the implementation contract, and should not be used to deploy clones
-  constructor(string memory _version) HatsModule(_version) { }
+  constructor(string memory _version, address _trustedForwarder) HatsModule(_version) ERC2771Context(_trustedForwarder){ }
 
   /*//////////////////////////////////////////////////////////////
                             INITIALIZOR
@@ -77,6 +78,38 @@ contract Module is HatsModule {
   /*//////////////////////////////////////////////////////////////
                         INTERNAL FUNCTIONS
   //////////////////////////////////////////////////////////////*/
+
+  function _msgSender()
+    internal
+    view
+    virtual
+    override
+    returns (address sender)
+  {
+    if (isTrustedForwarder(msg.sender)) {
+      // The assembly code is more direct than the Solidity version using `abi.decode`.
+      /// @solidity memory-safe-assembly
+      assembly {
+        sender := shr(96, calldataload(sub(calldatasize(), 20)))
+      }
+    } else {
+      return super._msgSender();
+    }
+  }
+
+  function _msgData()
+    internal
+    view
+    virtual
+    override
+    returns (bytes calldata)
+  {
+    if (isTrustedForwarder(msg.sender)) {
+      return msg.data[:msg.data.length - 20];
+    } else {
+      return super._msgData();
+    }
+  }
 
   /*//////////////////////////////////////////////////////////////
                             MODIFERS

@@ -1,10 +1,11 @@
-[submodule "lib/forge-std"]
+[submodule "pkgs/sample-hats-module/lib/forge-std"]
 	path = pkgs/sample-hats-module/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
-[submodule "lib/hats-module"]
-	path = pkgs/sample-hats-module/lib/hats-module
-	url = https://github.com/Hats-Protocol/hats-module
 [submodule "pkgs/sample-hats-module/lib/hats-module"]
 	path = pkgs/sample-hats-module/lib/hats-module
 	url = https://github.com/Hats-Protocol/hats-module
+	branch = main
+[submodule "pkgs/sample-hats-module/lib/openzeppelin-contracts"]
+	path = pkgs/sample-hats-module/lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
 	branch = main

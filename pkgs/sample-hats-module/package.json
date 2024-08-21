@@ -5,6 +5,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "forge": "forge",
     "setUp": "forge install",
     "fmt": "forge fmt --check",
     "build": "FOUNDRY_PROFILE=optimized forge build",
