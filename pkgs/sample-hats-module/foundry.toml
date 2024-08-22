@@ -58,7 +58,7 @@ local = "http://localhost:8545"
 mainnet = "https://mainnet.infura.io/v3/${INFURA_KEY}"
 optimism = "https://optimism-mainnet.infura.io/v3/${INFURA_KEY}"
 polygon = "${POLYGON_RPC}"
-sepolia = "https://sepolia.infura.io/v3/${INFURA_KEY}"
+sepolia = "https://gateway-api.cabinet-node.com/${CABINET_API_KEY}"
 
 [etherscan]
 arbitrum = { key = "${ARBISCAN_KEY}", url = "https://api.arbiscan.io/api" }
