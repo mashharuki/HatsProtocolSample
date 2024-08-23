@@ -4,10 +4,13 @@ pragma solidity ^0.8.19;
 import { Script, console2 } from "forge-std/Script.sol";
 import { Module } from "../src/Module.sol";
 import { SampleForwarder } from "../src/SampleForwarder.sol";
+import { HelloWorld } from "../src/HelloWorld.sol";
 
 contract Deploy is Script {
   Module public implementation;
   SampleForwarder public forwarder;
+  HelloWorld public helloWorld;
+
   bytes32 public SALT = bytes32(abi.encode("change this to the value of your choice"));
 
   // default values
@@ -29,6 +32,8 @@ contract Deploy is Script {
   function _log(string memory prefix) internal view {
     if (_verbose) {
       console2.log(string.concat(prefix, "Module:"), address(implementation));
+      console2.log(string.concat(prefix, "SampleForwarder:"), address(forwarder));
+      console2.log(string.concat(prefix, "HelloWorld:"), address(helloWorld));
     }
   }
 
@@ -38,6 +43,8 @@ contract Deploy is Script {
 
     // deploy forwarder contract
     forwarder = new SampleForwarder();
+    // deploy HelloWorld contract
+    helloWorld = new HelloWorld(address(forwarder));
 
     /**
      * @dev Deploy the contract to a deterministic address via forge's create2 deployer factory, which is at this

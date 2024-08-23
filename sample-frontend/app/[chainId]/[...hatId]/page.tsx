@@ -1,4 +1,7 @@
+"use client";
+
 import { Hat, HatsSubgraphClient } from '@hatsprotocol/sdk-v1-subgraph';
+import axios from "axios";
 import _ from 'lodash';
 import { Suspense } from 'react';
 
@@ -10,10 +13,14 @@ import ModuleDetailsCard from '@/components/module-details-card';
 import ResponsibilitiesCard from '@/components/responsibilities-card';
 import { Skeleton } from '@/components/ui/skeleton';
 import WearersListCard from '@/components/wearers-list-card';
+import HelloWorldJson from "@/contracts/HelloWorld.sol/HelloWorld.json";
+import { HELLO_WORLD_CONTRACT_ADDRESS } from '@/lib/constants';
 import { ipfsToHttp, resolveIpfsUri } from '@/lib/ipfs';
+import { createTypedSignData } from '@/lib/metaTransaction';
 import { IpfsDetails } from '@/types';
 import { hatIdIpToDecimal } from '@hatsprotocol/sdk-v1-core';
 import { optimism, sepolia } from 'viem/chains';
+import { useAccount, useSignTypedData } from 'wagmi';
 
 // SubGraph用のクライアントインスタンスを生成
 const hatsSubgraphClient = new HatsSubgraphClient({
@@ -50,12 +57,45 @@ export default async function HatPage({
 }: {
   params: { chainId: number; hatId: any }; // this is potentially an array?
 }) {
+  const account = useAccount();
+  const { signTypedDataAsync } = useSignTypedData();
+
   const hatData = await getHatData({
     chainId: params.chainId,
     hatId: params.hatId,
   });
 
   if (!hatData) return;
+
+  /**
+   * メタトランザクションを実行するメソッド
+   */
+  const executeMetaTransaction = async () => {
+    // typedSignDataを作成する。
+    const typedSignData:any = await createTypedSignData(account!.address, params.chainId as any, HELLO_WORLD_CONTRACT_ADDRESS, HelloWorldJson.abi, 'setNewText', ["hello INTMAXX!!"]);
+    // 署名する。
+    const sig = await signTypedDataAsync(typedSignData);
+    console.log("sig:", sig);
+
+    // relayer越しにトランザクションを送信する。
+    const gaslessResult = await axios.post("api/requestRelayer", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: typedSignData.message.from,
+        to: typedSignData.message.to,
+        value: typedSignData.message.value,
+        gas: typedSignData.message.gas,
+        nonce: typedSignData.message.nonce,
+        // deadline: uint48Time.toString(),
+        data: typedSignData.message.data,
+        signature: sig,
+      }),
+    });
+
+    console.log(gaslessResult.data);
+  };
 
   return (
     <main className=" min-h-screen w-full gap-y-12">
@@ -106,6 +146,13 @@ export default async function HatPage({
           />
         </Suspense>
         <Suspense fallback={<p>Loading...</p>}>
+          <button 
+            onClick={executeMetaTransaction}
+          >
+            execute MetaTx
+          </button>
+        </Suspense>
+        <Suspense fallback={<p>Loading...</p>}>
           <ModuleDetailsCard
             chainId={params.chainId}
             eligibilityAddress={hatData.eligibility}
@@ -128,6 +175,7 @@ const getHatData = async ({
   const trueHatId = _.first(hatId);
   if (!trueHatId) return null;
   console.log('chainId:', chainId);
+
   console.log('trueHatId:', trueHatId);
   const localHatId = hatIdIpToDecimal(trueHatId);
   console.log('localHatId:', localHatId);
